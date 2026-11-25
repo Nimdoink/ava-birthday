@@ -1,0 +1,209 @@
+:root {
+  color-scheme: light;
+  font-family: "Nunito", "Trebuchet MS", sans-serif;
+  color: #783751;
+  background: #fff0f5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 46%, rgba(255, 255, 255, .9) 0%, rgba(255, 247, 250, .72) 30%, transparent 68%),
+    radial-gradient(ellipse at 12% 18%, #ffe1ec 0%, transparent 42%),
+    radial-gradient(ellipse at 91% 82%, #f9e8ca 0%, transparent 38%),
+    linear-gradient(135deg, #fff4f8 0%, #ffe8f0 48%, #fff6e8 100%);
+}
+
+body::before,
+body::after {
+  position: fixed;
+  z-index: 0;
+  width: min(76vw, 680px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(198, 151, 70, .25);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+body::before {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 13px rgba(255, 255, 255, .12), 0 0 0 14px rgba(198, 151, 70, .13);
+}
+
+body::after {
+  top: 50%;
+  left: 50%;
+  width: min(67vw, 600px);
+  border-color: rgba(198, 151, 70, .15);
+  transform: translate(-50%, -50%);
+}
+
+.birthday-scene {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: center;
+  padding: 32px 22px;
+}
+
+.birthday-card {
+  position: relative;
+  width: min(100%, 900px);
+  padding: clamp(32px, 8vw, 78px) 20px;
+  text-align: center;
+}
+
+.birthday-heading {
+  margin: 0;
+  color: #dc6091;
+  font-family: "Fredoka", "Trebuchet MS", sans-serif;
+  font-size: clamp(48px, 10.2vw, 106px);
+  font-weight: 600;
+  letter-spacing: -.045em;
+  line-height: 1.02;
+  text-shadow:
+    0 3px 0 #fff,
+    0 6px 0 #f6c6d6,
+    0 9px 18px rgba(143, 57, 91, .17);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, .84);
+}
+
+.birthday-heading > span {
+  display: block;
+}
+
+.birthday-heading > span:nth-child(2) {
+  color: #c94f83;
+}
+
+.birthday-heart {
+  display: inline-block;
+  margin-left: .02em;
+  font-family: "Nunito", sans-serif;
+  font-size: .73em;
+  vertical-align: .08em;
+  filter: drop-shadow(0 5px 5px rgba(156, 64, 101, .2));
+  -webkit-text-stroke: 0;
+}
+
+.birthday-message {
+  margin: clamp(22px, 4vw, 36px) 0 0;
+  color: #966c27;
+  font-size: clamp(20px, 3.1vw, 31px);
+  font-weight: 800;
+  letter-spacing: .015em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .9);
+}
+
+.gold-sparkle {
+  position: absolute;
+  color: #c79a48;
+  text-shadow: 0 2px 8px rgba(198, 151, 70, .25);
+}
+
+.sparkle-left {
+  top: 7%;
+  left: 9%;
+  font-size: clamp(26px, 5vw, 48px);
+}
+
+.sparkle-right {
+  right: 8%;
+  bottom: 8%;
+  font-size: clamp(34px, 6vw, 58px);
+}
+
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti-layer-back {
+  z-index: 0;
+}
+
+.confetti-layer-front {
+  z-index: 2;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: 0;
+  left: var(--left);
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--rounding, 2px);
+  background: var(--color);
+  opacity: .84;
+  animation: confetti-fall var(--fall-time) linear var(--fall-delay) infinite;
+  will-change: transform;
+}
+
+.confetti-piece.is-circle {
+  border-radius: 50%;
+}
+
+@keyframes confetti-fall {
+  from {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+  }
+
+  to {
+    transform: translate3d(var(--drift), 112vh, 0) rotate(var(--spin));
+  }
+}
+
+@media (max-width: 480px) {
+  .birthday-card {
+    padding-right: 4px;
+    padding-left: 4px;
+  }
+
+  .birthday-heading {
+    font-size: clamp(43px, 11vw, 58px);
+  }
+
+  .sparkle-left {
+    top: 0;
+    left: 3%;
+  }
+
+  .sparkle-right {
+    right: 2%;
+    bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
