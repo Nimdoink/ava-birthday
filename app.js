@@ -23,6 +23,23 @@
     }
   }
 
-  addConfetti(backLayer, 58);
-  addConfetti(frontLayer, 5);
+  function addPartyItems(layer, items) {
+    items.forEach((item) => {
+      const piece = document.createElement("span");
+      piece.className = "party-item";
+      piece.textContent = item;
+      piece.setAttribute("aria-hidden", "true");
+      piece.style.setProperty("--left", `${Math.random() * 100}%`);
+      piece.style.setProperty("--fall-time", `${13 + Math.random() * 9}s`);
+      piece.style.setProperty("--fall-delay", `${-Math.random() * 19}s`);
+      piece.style.setProperty("--drift", `${Math.random() * 120 - 60}px`);
+      piece.style.setProperty("--spin", `${Math.random() * 100 - 50}deg`);
+      layer.append(piece);
+    });
+  }
+
+  addConfetti(backLayer, 45);
+  addConfetti(frontLayer, 75);
+  addPartyItems(backLayer, ["🎈", "✨"]);
+  addPartyItems(frontLayer, ["🍾", "🥂", "🎉", "🎂", "🎈", "🥂", "✨", "🍾"]);
 })();
